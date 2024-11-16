@@ -1,0 +1,17 @@
+---
+- name: Install and start HTTPD service
+  hosts: all
+  become: yes  # Ensures privilege escalation (root access)
+
+  tasks:
+    - name: Install httpd package
+      ansible.builtin.apt:
+        name: apache2
+        state: present
+
+    - name: Start and enable apache2 service
+      ansible.builtin.service:
+        name: apache2
+        state: started
+        enabled: true
+
